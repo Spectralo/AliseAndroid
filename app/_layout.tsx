@@ -10,8 +10,8 @@ import {
 // Navigation <3
 import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navigation';
 const Tab = createMaterialBottomTabNavigator();
-import { HomeScreen } from './screens/HomeScreen.tsx';
-import { SettingsScreen } from './screens/SettingsScreen.tsx';
+import HomeScreen from './screens/HomeScreen.tsx';
+import SettingsScreen from './screens/SettingsScreen.tsx';
 import { Text, View } from 'react-native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
@@ -28,10 +28,10 @@ export default function RootLayout() {
   return (
     <PaperProvider theme={paperTheme}>
       <Tab.Navigator
-        initialRouteName="Home"
+        initialRouteName="screens/HomeScreen"
       >
         <Tab.Screen 
-          name="HomeScreen"
+          name="screens/HomeScreen"
           component={HomeScreen}
           options={{
             tabBarLabel: 'Home',
@@ -41,7 +41,7 @@ export default function RootLayout() {
           }}
         />
         <Tab.Screen 
-          name="SettingsScreen"
+          name="screens/SettingsScreen"
           component={SettingsScreen}
           options={{
             tabBarLabel: 'Settings',
