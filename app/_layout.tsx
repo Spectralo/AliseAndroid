@@ -12,13 +12,20 @@ import { createMaterialBottomTabNavigator } from 'react-native-paper/react-navig
 const Tab = createMaterialBottomTabNavigator();
 import HomeScreen from './screens/HomeScreen.tsx';
 import SettingsScreen from './screens/SettingsScreen.tsx';
+import login from './login.tsx';
 import { Text, View } from 'react-native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+
+import * as NavigationBar from "expo-navigation-bar";
+
+NavigationBar.setPositionAsync("absolute");
+NavigationBar.setBackgroundColorAsync("#ffffff01");
 
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const { theme } = useMaterial3Theme();
+  const isLogIn = false
 
   const paperTheme =
     colorScheme === 'dark'
@@ -30,26 +37,43 @@ export default function RootLayout() {
       <Tab.Navigator
         initialRouteName="screens/HomeScreen"
       >
-        <Tab.Screen 
-          name="screens/HomeScreen"
-          component={HomeScreen}
-          options={{
-            tabBarLabel: 'Home',
-            tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="home" color={color} size={26} />
-            ),
-          }}
-        />
-        <Tab.Screen 
-          name="screens/SettingsScreen"
-          component={SettingsScreen}
-          options={{
-            tabBarLabel: 'Settings',
-            tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="cog" color={color} size={26} />
-            ),
-          }}
-        />
+        { isLogIn == true ? (
+          <>
+          <Tab.Screen 
+            name="screens/HomeScreen"
+            component={HomeScreen}
+            options={{
+              tabBarLabel: 'Home',
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons name="home" color={color} size={26} />
+              ),
+            }}
+          />
+          <Tab.Screen 
+            name="screens/SettingsScreen"
+            component={SettingsScreen}
+            options={{
+              tabBarLabel: 'Settings',
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons name="cog" color={color} size={26} />
+              ),
+            }}
+          />
+          </>
+        ) : (
+          <>
+            <Tab.Screen
+              name="login"
+              component={login}
+              options={{
+                tabBarLabel:'Getting Started',
+                tabBarIcon: ({ color }) => (
+                  <MaterialCommunityIcons name="key" color={color} size={26} />
+                )
+              }}
+            />
+          </>
+        )}
       </Tab.Navigator>
     </PaperProvider>
   );
