@@ -10,6 +10,7 @@ import { MD3DarkTheme, MD3LightTheme, PaperProvider } from "react-native-paper";
 // Navigation <3
 import login from "./login";
 import index from "./index";
+import webview from "./webview";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const Stack = createNativeStackNavigator();
@@ -48,6 +49,13 @@ export default function RootLayout() {
               <Stack.Screen
                 name="login"
                 component={login}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="webview"
+                component={webview}
                 options={{
                   headerShown: false,
                 }}

@@ -1,8 +1,10 @@
 import { View } from "react-native";
 import { Text, Button, useTheme } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Index() {
   const theme = useTheme();
+  const navigation = useNavigation();
   return (
     <View
       style={{
@@ -19,7 +21,7 @@ export default function Index() {
       <Button
         style={{ alignItems: "end", marginTop: 20 }}
         mode="elevated"
-        onPress={() => console.log("Pressed")}
+        onPress={() => navigation.navigate("webview")}
       >
         Login
       </Button>
