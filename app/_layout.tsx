@@ -6,6 +6,8 @@ import {
   DefaultTheme as NavigationDefaultTheme,
 } from "@react-navigation/native";
 import { MD3DarkTheme, MD3LightTheme, PaperProvider } from "react-native-paper";
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 
 // Navigation <3
 import login from "./login";
@@ -33,6 +35,7 @@ export default function RootLayout() {
   return (
     <PaperProvider theme={paperTheme}>
       <NavigationContainer independent={true} theme={paperTheme}>
+      <SafeAreaProvider style={{flex:1}}>
         <Stack.Navigator>
           {isLoggedIn == true ? (
             <>
@@ -63,6 +66,7 @@ export default function RootLayout() {
             </>
           )}
         </Stack.Navigator>
+        </SafeAreaProvider>
       </NavigationContainer>
     </PaperProvider>
   );
